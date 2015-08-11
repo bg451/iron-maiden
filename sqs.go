@@ -8,6 +8,11 @@ import (
 	"github.com/goamz/goamz/sqs"
 )
 
+// SQS is a bit different compared to rabbitmq and ironmq in terms of limitations.
+// First off, the maximum batch size for messages is 10, and the maximum single message size is 64kb.
+// If you want to send the maximum message size of 256kb, you have to fragment the message apart into 4
+// seperate 64kb chunks.
+
 type SqsRunner struct {
 	conn *sqs.SQS
 }
